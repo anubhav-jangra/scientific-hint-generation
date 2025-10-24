@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Annotation Webpage</title>
+    <link rel="stylesheet" type="text/css" href="static/styles/section_survey.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <h1 class="header">Section {{ section_number }} Survey</h1>
+
+        <p class="info">Please answer the following based on your experience with the previous section :</p>
+        <!-- <p style="color: red;">* - Required fields</p> -->
+
+        <form action = "/sectionsurvey" method = "POST" class="annotate-form">
+
+            <br><label for="q1">How would you rate the difficulty of the quiz?<span style="color: red;">*</span></label><br>
+            <div class="radio-buttons">
+            <input type="radio" name="q1" value="1" required> Very Easy
+            <input type="radio" name="q1" value="2"> Easy
+            <input type="radio" name="q1" value="3"> Moderate
+            <input type="radio" name="q1" value="4"> Hard
+            <input type="radio" name="q1" value="5"> Very Hard<br>
+            </div>
+
+            {% if show_hint_ques %}
+            <br><label for="q2">How would you rate the quality of the hints shown in the previous section?<span style="color: red;">*</span></label><br>
+            <div class="radio-buttons">
+            <input type="radio" name="q2" value="1" required> Not at all helpful
+            <input type="radio" name="q2" value="2"> Slightly helpful
+            <input type="radio" name="q2" value="3"> Moderate
+            <input type="radio" name="q2" value="4"> Very helpful
+            <input type="radio" name="q2" value="5"> Extremely helpful<br>
+            </div>
+
+            <br><label for="q3">Strengths: What did the hints <b>do well</b>?<span style="color: red;">*</span></label><br>
+            <textarea id="q3" name="q3" rows="4" cols="50" required></textarea><br>
+
+            <label for="q4">Weaknesses: What did the hints <b>not do well</b>? <span style="color: red;">*</span></label><br>
+            <textarea id="q4" name="q4" rows="4" cols="50" required></textarea><br>
+            {% endif %}
+
+
+            <input type="hidden" id="participant_id" name="participant_id" value="{{ participant_id }}">
+            <input type="hidden" id="question_number" name="question_number" value="{{ question_number }}">
+
+            <input type="submit" value="Submit" class="submit-button">
+        </form>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+[
+    {
+        "promptID": "eval1",
+        "prompt": "Given a question, return the answer to the question.\n\nQuestion: [question]\nAnswer: "
+    }
+]

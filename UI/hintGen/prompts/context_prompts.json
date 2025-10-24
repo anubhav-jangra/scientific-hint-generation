@@ -1,0 +1,11 @@
+[
+	{
+		"promptType": "zero-shot",
+		"prompts": [
+			{
+				"id": "context1",
+				"prompt": "Generate 10 hints for this question-answer pair that will help a student answer the question. While the context is available for reference, it is not mandatory to restrict the hints to the context alone.\nQuestion - [question]\nAnswer - [answer]\nContext - [context]"
+			}
+		]
+	}
+]

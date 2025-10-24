@@ -1,0 +1,43 @@
+<!-- Custom question hint generation template -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Custom Question Webpage</title>
+    <link rel="stylesheet" type="text/css" href="static/styles/custom.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <h1 class="header">Hint Generation for Custom Questions</h1>
+
+        <form action = "/custom" method = "POST" class="custom-form">
+            <label for="question">Enter your question:</label><br>
+            <input type="text" id="question" name="question" placeholder="{{ question }}"><br>
+            <label for="answer">Enter your answer (optional):</label><br>
+            <input type="text" id="answer" name="answer" placeholder="{{ answer }}"><br>
+            <label for="context">Enter some supporting information (optional):</label><br>
+            <input type="text" id="context" name="context"placeholder="{{ context }}"><br>
+            
+            <div class="buttons" style="display: flex; flex-direction: row; width: 100%; justify-content: space-around;">
+                <input type="submit" name="submit" value="Submit" class="submit-button">
+                <input type="submit" name="submit" value="Go Back" class="submit-button">
+            </div>
+        </form>
+
+        <div class="hints-display">
+            <div class="selected-hints">
+                {{ selected_hints | safe }}
+            </div>
+
+            <div class="all-hints">
+                {{ generated_hints | safe }}
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

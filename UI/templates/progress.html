@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Physics Question Bank</title>
+</head>
+
+<body>
+    <h1>Welcome to the Physics Question Bank!</h1>
+
+    <div class="description">
+        <p>You'll be given {{ number_of_questions }} questions that you have to answer - </p>
+    </div>
+
+    <div class="questions">
+        {{ physics_data | safe }}
+    </div>
+</body>
+
+</html>

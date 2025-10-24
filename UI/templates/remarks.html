@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Annotation Webpage</title>
+    <link rel="stylesheet" type="text/css" href="static/styles/remarks.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <h1 class="header">Final Remarks</h1>
+
+        <p class="info"><b>{{ section_info_revealing_str | safe }}</b></p>
+        <p class="info">Here's an overview of your interaction across the three Sections:</p>
+
+        <div class="sections-overview">
+            <div class="section">
+                <h2>Section 1</h2>
+                {{ qa_pairs_html_section_1 | safe }}
+            </div>
+            <div class="section">
+                <h2>Section 2</h2>
+                {{ qa_pairs_html_section_2 | safe }}
+            </div>
+            <div class="section">
+                <h2>Section 3</h2>
+                {{ qa_pairs_html_section_3 | safe }}
+            </div>
+        </div>
+
+        <p class="info">Please answer the following questions based on your experience:</p>
+        <!-- <p style="color: red;">* - Required fields</p> -->
+
+        <form action = "/remarks" method = "POST" class="annotate-form">
+
+            <!-- <table border="1" style="margin-bottom: 20px;">
+                <tr>
+                    <th>Hint Property</th>
+                    <th>Section 1</th>
+                    <th>Section 2</th>
+                    <th>Section 3</th>
+                </tr>
+                {% for prop in ['Helpfulness', 'Novelty'] %}
+                    <tr>
+                    <td>{{ prop }}</td>
+                    {% for i in range(1, 4) %}
+                        <td>
+                            <select name="{{ prop|lower }}_rank_{{ i }}" required>
+                                <option value="">Rank</option>
+                                <option value="1">1 (Best)</option>
+                                <option value="2">2</option>
+                                <option value="3">3 (Worst)</option>
+                            </select>
+                        </td>
+                    {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table> -->
+
+            <br><label for="q1">Between sections 2 and 3, which set of hints was more helpful in answering questions?<span style="color: red;">*</span></label><br>
+            <div class="radio-buttons">
+            <input type="radio" name="q1" value="section-2" required> Section 2
+            <input type="radio" name="q1" value="section-3"> Section 3<br>
+            </div>
+
+            <br><label for="q2">Between sections 2 and 3, which set of hints improved your knowledge about the question better?<span style="color: red;">*</span></label><br>
+            <div class="radio-buttons">
+            <input type="radio" name="q2" value="section-2" required> Section 2
+            <input type="radio" name="q2" value="section-3"> Section 3<br>
+            </div>
+
+            <br><label for="q3">What kinds of differences did you notice across the hints in section 2 and 3?<span style="color: red;">*</span></label><br>
+            <textarea id="q3" name="q3" rows="8" cols="80" required></textarea><br>
+
+            <br><label for="q4">Is there anything else you would like to share about your experience in the study?<br>
+                <i>You can include thoughts about the interface, quiz content, or anything else that was not covered earlier.<br>If you have nothing to add, you can simply write "nothing".</i><span style="color: red;">*</span></label><br>
+            <textarea id="q4" name="q4" rows="8" cols="80" required></textarea><br>
+
+
+            <input type="hidden" id="participant_id" name="participant_id" value="{{ participant_id }}">
+
+            <input type="submit" value="Submit" class="submit-button">
+        </form>
+    </div>
+
+    <!-- <script>
+    document.querySelector('form.annotate-form').addEventListener('submit', function(event) {
+        const properties = ['helpfulness', 'novelty'];
+        let valid = true;
+        let errorMsg = "";
+
+        properties.forEach(function(prop) {
+            let ranks = [];
+            for (let i = 1; i <= 3; i++) {
+                let sel = document.querySelector(`select[name="${prop}_rank_${i}"]`);
+                if (sel) {
+                    ranks.push(sel.value);
+                }
+            }
+            // Check for duplicates and empty selections
+            let uniqueRanks = new Set(ranks);
+            if (ranks.includes("") || uniqueRanks.size !== 3) {
+                valid = false;
+                errorMsg += `Please assign unique ranks (1, 2, 3) for all sections in "${prop.charAt(0).toUpperCase() + prop.slice(1)}".\n`;
+            }
+        });
+
+        if (!valid) {
+            alert(errorMsg.trim());
+            event.preventDefault();
+        }
+    });
+    </script> -->
+
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Quiz Webpage</title>
+    <link rel="stylesheet" type="text/css" href="static/styles/quiz.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <h1 class="header">Welcome to the Quiz Webpage!</h1>
+
+        <div class="quiz">
+
+            {{ progress_bar_width | safe }}
+
+            {{ alert_message | safe }}
+
+            <div class="attempts">
+                <p style="margin-right: 10px;">Total attempts left: </p>
+                <div id="lives">
+                    {{ attempts_left | safe }}
+                </div>
+            </div>
+
+            <form action = "/quiz" method = "POST" class="quiz-form">
+                <label for="answer" class="question"><b>Question</b>: {{ question }}</label><br>
+                <input type="text" id="answer" name="answer"><br>
+                <input type="hidden" id="participant_id" name="participant_id" value="{{ participant_id }}">
+                <input type="hidden" id="question_number" name="question_number" value="{{ question_number }}">
+                
+                <input type="submit" name="submit" value="Submit" class="submit-button"><br>
+
+                {% if show_hint_button %}
+                <input type="submit" name="submit" value="Want Hint?" class="submit-button">
+                {% endif %}
+
+                <pre id="typewriter" class="typewriter"></pre>
+                
+                <input type="submit" name="submit" value="Give up this question" class="submit-button">
+
+            </form>
+
+            {% if show_hint_button %}
+            <div class="prev-hints">
+                {{ show_hints | safe }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <script>
+        function decodeHtml(html) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = html;
+            return txt.value;
+        }
+
+        document.getElementById('progress-text').innerText = '{{progress}} / {{total_questions}}';
+
+        var text = decodeHtml("{{ hint }}");
+        // var text = "{{ hint }}"; // .replace(/((?:\w+\W+){12})/g, "$1\n"); // Replace with your text
+        var container = document.getElementById('typewriter');
+        var cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        cursor.textContent = '|';
+        container.appendChild(cursor);
+
+        function typeText(text, container, cursor, delay = 25) {
+            var index = 0;
+            var textNode = document.createTextNode('');
+            container.insertBefore(textNode, cursor);
+
+            function type() {
+                if (index < text.length) {
+                    textNode.appendData(text[index]);
+                    index++;
+                    setTimeout(type, delay);
+                }
+            }
+            type();
+        }
+
+        typeText(text, container, cursor);
+
+        document.querySelector('details').addEventListener('click', function(event) {
+            var timestamp = new Date();
+            var participant_id = document.querySelector('#participant_id').value;
+            var question_number = document.querySelector('#question_number').value;
+            
+            fetch('/past_hints', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    timestamp: timestamp, 
+                    participant_id: participant_id,
+                    question_number: question_number
+                })
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Annotation Webpage</title>
+    <link rel="stylesheet" type="text/css" href="static/styles/break.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="header">Break Time ☕☕</h1>
+
+        <div class="quiz">
+
+            {{ progress_bar_width | safe }}
+
+            <p>Feel free to take a break for as long as you need! Just keep this tab open and stay connected to the internet while you're away.</p>
+
+            <form action = "/break" method = "POST" class="quiz-form">
+                <input type="hidden" id="participant_id" name="participant_id" value="{{ participant_id }}">
+                <input type="hidden" id="question_number" name="question_number" value="{{ question_number }}">
+
+                <input type="submit" name="submit" value="End Break" class="submit-button"><br>
+            </form>
+        </div>
+
+    <script>
+        document.getElementById('progress-text').innerText = '{{progress}} / {{total_questions}}';
+    </script>
+
+</body>
+
+</html>

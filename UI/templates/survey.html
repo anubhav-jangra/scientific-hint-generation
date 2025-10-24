@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Hints Survey</title>
+    <link rel="stylesheet" type="text/css" href="static/styles/survey.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <h1 class="header">User Experience Survey</h1>
+
+        <div class="survey">
+            <p><b>Previous question:</b> {{ question }}</p>
+            <p><b>Correct Answer:</b> {{ answer }}</p>
+            
+            <!-- <hr style="border: none; border-top: 2px solid gray; color: gray; overflow: visible; text-align: center; height: 5px;"> -->
+            <!-- <p>Answer the questions about the hints provided in the last question based on your experience.</p> -->
+            <hr style="border: none; border-top: 2px solid gray; color: gray; overflow: visible; text-align: center; height: 5px;">
+            
+            <p><b>Were you satisfied by the hints used in the previous question?</b></p>
+
+            <details>
+                <summary>Click me for details about the 1-5 scale.</summary>
+                    <ol>
+                        <li><b>Strongly Dissatisfied</b>: Hint is totally irrelevant or misleading, making you confused, frustrated or unable to utilize it in any meaningful way.</li>
+                        <li><b>Dissatisfied</b>: Hint is possibly useful, but still lacking in clarity or relevance. Hint is too vague to be helpful.</li>
+                        <li><b>Neutral</b>: Hint may offer some assistance, but they still feel uncertain or indifferent about its effectiveness. The hint may be somewhat relevant but lacks depth or specificity.</li>
+                        <li><b>Satisfied</b>: Hint offers valuable assistance and helps you move forward in answering the question or solving the problem. It is clear, relevant, and provides a useful direction.</li>
+                        <li><b>Strongly Satisfied</b>: The hint exceeds your expectation and provides comprehensive guidance, making it easy to understand the concept and answer the question.</li>
+                    </ol>
+            </details>
+
+            {{ hints_form | safe }}
+        </div>
+    </div>
+
+</body>
+
+</html>

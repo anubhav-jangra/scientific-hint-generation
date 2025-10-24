@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>HintGen Study Analysis</title>
+    <link rel="stylesheet" type="text/css" href="static/styles/plots.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1 class="header">Analysis Webpage</h1>
+
+        <form action="/plots" method="POST" class="plots-form" id="plots-form" onsubmit="return validateForm()">
+            <label for="plot_type" class="question"><b>Plot Type</b>: </label>
+            <select id="plot_type" name="plot_type" onchange="showParticipantField()">
+                <option value="aggregate">Aggregate</option>
+                <option value="individual">Individual</option>
+                <option value="informativeness">Informativeness</option>
+            </select>
+
+            <div id="participant_field" style="display: none;">
+                <label for="participant_id" class="question"><b>Participant ID</b>: </label>
+                <select id="participant_id" name="participant_id">
+                    {% for i in range(1, num_participants+1) %}
+                        <option value="P-{{ i }}">P-{{ i }}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+
+            <div id="scatter_field" style="display: none;">
+                <label for="question_str" class="question"><b>Question</b>: </label>
+                <select id="question_str" class="question_str" name="question_str">
+                    {{ questions_html | safe }}
+                </select>
+            </div>
+
+            <input type="submit" name="submit" value="Submit" class="submit-button"><br>
+            <input type="submit" name="submit" value="Go Back" class="submit-button">
+        </form>
+
+        <div class="plots-container">
+            {% if plot_jsons %}
+                {% for plot_json in plot_jsons %}
+                    <div id="plot{{ loop.index }}" class="plots"></div>
+                {% endfor %}
+
+                <script>
+                    var plotJsons = {{ plot_jsons | tojson | safe }};
+                    plotJsons.forEach(function(plotJson, index) {
+                        try {
+                            var figure = JSON.parse(plotJson);
+                            console.log(figure);
+                            if (figure) {
+                                var plotDiv = document.getElementById('plot' + (index + 1));
+                                // check if the div has a plot before purging
+                                if (typeof plotDiv.data !== 'undefined') {
+                                    Plotly.purge(plotDiv);
+                                }
+                
+                                // If there is only one plot, change its CSS properties to make it larger
+                                if (plotJsons.length === 1) {
+                                    plotDiv.style.width = '80vw';  // Change the width as needed
+                                    plotDiv.style.height = '60vh';  // Change the height as needed
+                                }
+                
+                                console.log('Data:', figure.data);
+                                console.log('Layout:', figure.layout);
+                                Plotly.react('plot' + (index + 1), figure.data, figure.layout);
+                            } else {
+                                console.log("No figure to render. Most likely it was a GET call.");
+                            }
+                        } catch (error) {
+                            console.error("Error parsing JSON: ", error);
+                        }
+                    });
+                </script>
+            {% endif %}
+        </div>
+
+    </div>
+</body>
+
+<script>
+
+    // show the participant field when the individual plot type is selected
+    function showParticipantField() {
+        var plotType = document.getElementById('plot_type').value;
+        if (plotType === 'individual') {
+            document.getElementById('participant_field').style.display = 'block';
+        } else if (plotType === 'informativeness') {
+            document.getElementById('scatter_field').style.display = 'block';
+        } else {
+            document.getElementById('participant_field').style.display = 'none';
+            document.getElementById('scatter_field').style.display = 'none';
+        }
+    }
+
+    // validate the form before submission
+    function validateForm() {
+        var plotType = document.getElementById('plot_type').value;
+        if (plotType === 'individual') {
+            var participantId = document.getElementById('participant_id').value;
+            var participantEmail = document.getElementById('participant_email').value;
+            if (!participantId && !participantEmail) {
+                alert('Please enter a participant ID or email.');
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
+
+</html>

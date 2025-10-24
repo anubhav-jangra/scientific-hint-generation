@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Quiz Webpage</title>
+    <link rel="stylesheet" type="text/css" href="static/styles/thank_you.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <h1 class="header">Thank you for participating in the study!</h1>
+
+        <div class="sub-container">
+            
+            <h2>✨✨✨ You correctly answered {{ correct_answers }} questions out of {{ total_questions }}! ✨✨✨</h2>
+
+            <div class="chart-container">
+                <div class="piechart" {{ piechart_html | safe}}></div>
+                <div class="legend">
+                    <div class="correct">Correctly Answered</div>
+                    <div class="incorrect">Incorrectly Answered</div>
+                </div>
+            </div>
+
+            <p>You asked for hints a total of {{ total_hints_asked }} times, and rated them {{ average_hint_rating }}/5 overall.</p>
+
+            <h3>Here are the questions and answers from the quiz:</h3>
+            {{ qa_pairs_html | safe}}
+
+            <p style="padding-bottom: 30px;"><a href="/">Click here</a> to go back to the home page.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

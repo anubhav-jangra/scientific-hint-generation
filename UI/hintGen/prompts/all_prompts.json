@@ -1,0 +1,37 @@
+[
+	{
+		"promptType": "zero-shot",
+		"prompts": [
+			{
+				"id": "zs0",
+				"prompt": "Generate 10 hints for this question-answer pair.\nQuestion - [question]\nAnswer - [answer]\n"
+			},
+			{
+				"id": "zs1",
+				"prompt": "Generate 10 hints for this question-answer pair that will be easy to understand for a middle school student and useful to answer the question given the hint.\nQuestion - [question]\nAnswer - [answer]\n"
+			},
+			{
+				"id": "zs2",
+				"prompt": "Generate 10 hints for this question-answer pair that will help a student answer the question.\nQuestion - [question]\nAnswer - [answer]"
+			},
+			{
+				"id": "zs3",
+				"prompt": "A hint is a rhetorical device that is intended to either: 1) provide the student with a piece of information that the tutor hopes will simulate the student’s recall of the facts needed to answer a question, or 2) provide a piece of information that can facilitate the student’s making an inference that is needed to arrive at an answer to a question or the prediction of system behavior.\n\nGiven this knowledge of a hint, generate 10 hints for this question-answer pair that will help a student answer the question.\nQuestion - [question]\nAnswer - [answer]"
+			}
+		]
+
+	},
+	{
+		"promptType": "few-shot",
+		"prompts": [
+			{
+				"id": "fs1",
+				"prompt": "Generate 10 hints for this question-answer pair that will help a student answer the question. Given below are a few examples that can be used as reference to generate the hints. Ensure that the hints are informative and guide users without revealing the answer.\n\nQuestion - Movement of what causes earthquakes?\nAnswer - Tectonic plates\nPossible Hint - The constant movement of these geological features creates stress, leading to seismic events.\n\nQuestion - What medicine is given to fight bacteria but not viruses?\nAnswer - Antibiotic\nPossible Hint - This medicine's name technically means 'against life'.\n\nQuestion - Diabetes happens because of problems in which organ of the human body?\nAnswer - Pancreas\nPossible Hint - Type 1 diabetes is typically caused by an autoimmune reaction that damages the cells in this organ responsible for insulin production\n\nQuestion - [question]\nAnswer - [answer]\n10 hints for this question-answer pair-\n"
+			},
+			{
+				"id": "fs2",
+				"prompt": "Generate 10 hints for this question-answer pair that will help a student answer the question. Given below are a few examples that can be used as reference to generate the hints. Ensure that the hints are informative and guide users without revealing the answer.\n\nQuestion - What is Newtons the SI unit of in the International System of Units?\nAnswer - Force\nPossible Hint - This entity is responsible for moving or stopping movement, it works by acting upon mass.\n\nQuestion - Yeast are a member of what kingdom of organisms?\nAnswer - Fungus\nPossible Hint - Many members of this kingdom are often seen growing on old food or in damp places.\n\nQuestion - What is the bending of light through a glass prism is called?\nAnswer - Refraction\nPossible Hint - Type 1 diabetes is typically caused by an autoimmune reaction that damages the cells in this organ responsible for insulin production\n\nQuestion - [question]\nAnswer - [answer]\n10 hints for this question-answer pair-\n"
+			}
+		]
+	}
+]

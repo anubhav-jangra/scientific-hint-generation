@@ -1,0 +1,4 @@
+data/SciQ/test.json
+data/SciQ/train.json
+data/SciQ/valid.json
+data/SciQ-HintGen/train.json

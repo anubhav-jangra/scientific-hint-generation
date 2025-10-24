@@ -1,0 +1,31 @@
+<!-- Custom question hint generation template -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Custom Generated Hints</title>
+</head>
+
+
+<body>
+    <h1>Generated Hints!</h1>
+
+    <div class="inputs">
+        <p>Question: {{ question }}</p>
+        <p>Answer: {{ answer }}</p>
+        <p>Context: {{ context }}</p>
+    </div>
+
+    <div class="selected_hints">
+        <h3> Selected Hints: </h3>
+        {{ selected_hints | safe }}
+    </div>
+
+    <div class="all_hints">
+        <h3> All the generated hints: </h3>
+        {{ generated_hints | safe }}
+    </div>
+</body>
+
+</html>

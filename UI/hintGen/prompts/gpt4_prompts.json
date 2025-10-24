@@ -1,0 +1,12 @@
+[
+	{
+		"promptType": "zero-shot",
+		"prompts": [
+			{
+				"id": "zs2",
+				"prompt": "Generate 10 hints for this question-answer pair that will help a student answer the question.\nQuestion - [question]\nAnswer - [answer]"
+			}
+		]
+
+	}
+]

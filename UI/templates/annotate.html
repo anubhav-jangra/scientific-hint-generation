@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Annotation Webpage</title>
+    <link rel="stylesheet" type="text/css" href="static/styles/annotate.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <h1 class="header">Participant Demographics</h1>
+
+        <p class="info">Please fill the following form to begin the annotation process:</p>
+        <p style="color: red;">* - Required fields</p>
+
+        <form action = "/annotate" method = "POST" class="annotate-form">
+            <label for="terms">
+                <input type="checkbox" id="terms" name="terms" required>
+                I have filled the <a href="https://forms.gle/F3GYzgDEM8WxD77t5" target="_blank">consent form</a> to participate in the study.<span style="color: red;">*</span>
+            </label><br>
+
+            <label for="name">Enter your full name:<span style="color: red;">*</span></label><br>
+            <input type="text" id="name" name="name" required><br>
+            
+            <label for="email">Enter your email address:<span style="color: red;">*</span></label><br>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="age">Enter your age:<span style="color: red;">*</span></label><br>
+            <input type="number" id="age" name="age" required><br>
+
+            <label for="gender">Enter your gender:</label><br>
+            <input type="text" id="gender" name="gender"><br>
+
+            <label for="ethnicity">Select your Ethnicity:</label><br>
+            <select id="ethnicity" name="ethnicity">
+                <option value="">Select...</option>
+                <option value="asian">Asian</option>
+                <option value="black">Black or African American</option>
+                <option value="hispanic">Hispanic or Latino</option>
+                <option value="middle-eastern">Middle Eastern or North African</option>
+                <option value="multi-racial">Multiracial</option>
+                <option value="native-american">Native American or Alaska Native</option>
+                <option value="native-hawaiian">Native Hawaiian or Other Pacific Islander</option>
+                <option value="white">White</option>
+                <option value="other">Other</option>
+            </select><br>
+
+            <label for="background">Select your highest educational background (finished or ongoing):</label><br>
+            <select id="background" name="background">
+                <option value="">Select...</option>
+                <option value="highschool">High School</option>
+                <option value="bachelors">Bachelor's Degree</option>
+                <option value="masters">Master's Degree</option>
+                <option value="phd">PhD</option>
+                <option value="other">Other</option>
+            </select><br>
+
+            <label for="job">Enter your most recent job, if you've had any:</label><br>
+            <input type="text" id="job" name="job"><br>
+            
+            <p>Provide your confidence in each subject on a scale of 1-5.</p>
+            <details>
+                <summary>Click me for details about the 1-5 scale.</summary>
+                    <ul>
+                        <li>1: Novice</li>
+                        <ul>
+                            <li>Indicates a basic understanding of the subject matter.</li>
+                            <li>Possesses minimal knowledge or experience in the field.</li>
+                            <li>May struggle with fundamental concepts and applications.</li>
+                        </ul>
+                        <li>2: Beginner</li>
+                        <ul>
+                            <li>Demonstrates some familiarity with the subject.</li>
+                            <li>Understands basic principles but lacks depth in knowledge.</li>
+                            <li>Requires guidance and further learning to grasp more advanced topics.</li>
+                        </ul>
+                        <li>3: Intermediate</li>
+                        <ul>
+                            <li>Shows a solid understanding of core concepts and principles.</li>
+                            <li>Can apply knowledge to solve moderately complex problems.</li>
+                            <li>Has a good grasp of foundational theories but may lack expertise in specialized areas.</li>
+                        </ul>
+                        <li>4: Advanced</li>
+                        <ul>
+                            <li>Exhibits expertise in the subject matter.</li>
+                            <li>Possesses comprehensive knowledge and skills.</li>
+                            <li>Capable of tackling complex issues and contributing original insights.</li>
+                            <li>Often engaged in ongoing learning and stays updated with developments in the field.</li>
+                        </ul>
+                        <li>5: Expert</li>
+                        <ul>
+                            <li>Represents the highest level of proficiency and mastery.</li>
+                            <li>Demonstrates exceptional knowledge, skills, and experience.</li>
+                            <li>Considered a leader or authority in the subject area.</li>
+                            <li>Contributes significantly to research, innovation, or practice within the field.</li>
+                            <li>Often sought after for consultation, teaching, or leadership roles.</li>
+                        </ul>
+                    </ul>
+            </details>
+
+            <label for="physics">Physics:<span style="color: red;">*</span></label><br>
+            <div class="radio-buttons">
+                <label><input type="radio" name="physics" value="1" required> Novice (1) </label>
+                <label><input type="radio" name="physics" value="2"> Beginner (2) </label>
+                <label><input type="radio" name="physics" value="3"> Intermediate (3) </label>
+                <label><input type="radio" name="physics" value="4"> Advanced (4) </label>
+                <label><input type="radio" name="physics" value="5"> Expert (5) </label><br><br>
+            </div>
+
+            <label for="chemistry">Chemistry:<span style="color: red;">*</span></label><br>
+            <div class="radio-buttons">
+                <label><input type="radio" name="chemistry" value="1" required> Novice (1) </label>
+                <label><input type="radio" name="chemistry" value="2"> Beginner (2) </label>
+                <label><input type="radio" name="chemistry" value="3"> Intermediate (3) </label>
+                <label><input type="radio" name="chemistry" value="4"> Advanced (4) </label>
+                <label><input type="radio" name="chemistry" value="5"> Expert (5) </label><br><br>
+            </div>
+
+            
+            <label for="biology">Biology:<span style="color: red;">*</span></label><br>
+            <div class="radio-buttons">
+                <label><input type="radio" name="biology" value="1" required> Novice (1) </label>
+                <label><input type="radio" name="biology" value="2"> Beginner (2) </label>
+                <label><input type="radio" name="biology" value="3"> Intermediate (3) </label>
+                <label><input type="radio" name="biology" value="4"> Advanced (4) </label>
+                <label><input type="radio" name="biology" value="5"> Expert (5) </label><br><br>
+            </div>
+
+            <label for="earth_sciences">Earth Sciences:<span style="color: red;">*</span></label><br>
+            <div class="radio-buttons">
+                <label><input type="radio" name="earth_sciences" value="1" required> Novice (1) </label>
+                <label><input type="radio" name="earth_sciences" value="2"> Beginner (2) </label>
+                <label><input type="radio" name="earth_sciences" value="3"> Intermediate (3) </label>
+                <label><input type="radio" name="earth_sciences" value="4"> Advanced (4) </label>
+                <label><input type="radio" name="earth_sciences" value="5"> Expert (5) </label><br><br>
+            </div>
+
+            <input type="submit" value="Submit" class="submit-button">
+        </form>
+    </div>
+
+    <script>
+        function updateOptions(selectElement) {
+            var selectedOption = selectElement.value;
+            var allSelects = document.querySelectorAll('select');
+
+            allSelects.forEach(function(select) {
+                if (select !== selectElement) {
+                    var options = select.querySelectorAll('option');
+                    options.forEach(function(option) {
+                        if (option.value === selectedOption) {
+                            option.disabled = true;
+                        } else {
+                            option.disabled = false;
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+[
+    {
+        "promptID": "domain1",
+        "prompt": "Given a question-answer pair, identify the subject it belongs to. The possible domains are: biology, chemistry, physics, and earth sciences.\n\nQuestion: [question]\nAnswer: [answer]\nContext: [context]\nDomain: "
+    }
+]
